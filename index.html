@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kara Mongell — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Oxygen+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #1C1D24;
+    --accent: #1F74FF;
+    --text: #FFFFFF;
+    --text-dim: rgba(255,255,255,0.5);
+    --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --mono: 'Oxygen Mono', 'Courier New', monospace;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *{box-sizing:inherit;}
+  html{scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+  .wrap{max-width:820px; margin:0 auto; padding: 0 24px;}
+
+  header{
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    background: var(--bg);
+    padding: 28px 24px;
+    z-index: 10;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  nav{
+    max-width:820px;
+    margin:0 auto;
+    display:flex;
+    gap: 34px;
+    font-size: 16px;
+  }
+  nav a{ text-decoration:none; opacity:0.85; transition: opacity .15s ease; }
+  nav a:hover, nav a:focus-visible{ opacity:1; color: var(--accent); }
+
+  section{ padding: 64px 24px; }
+  section.hero{ padding-top: 72px; padding-bottom: 56px; }
+
+  .hero-top{
+    display:flex;
+    align-items:center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  h1{
+    font-family: var(--serif);
+    font-weight: 400;
+    color: var(--accent);
+    font-size: clamp(34px, 6vw, 68px);
+    line-height: 1.15;
+    margin: 0;
+    flex: 1 1 480px;
+  }
+  .icon-swap{
+    width: 42px; height: 42px;
+    min-width:42px;
+    cursor: default;
+  }
+  .icon-swap svg{
+    width:100%;
+    height:100%;
+    display:block;
+  }
+  .bio{
+    margin-top: 32px;
+    font-size: 16px;
+    line-height: 2;
+  }
+
+  h2{
+    font-family: var(--mono);
+    font-weight:400;
+    font-size:16px;
+    line-height:1.5;
+    margin: 0 0 32px 0;
+  }
+
+  .project{ margin-bottom: 48px; }
+  .project:last-child{ margin-bottom:0; }
+  .project-head{
+    display:flex;
+    align-items:baseline;
+    gap: 24px;
+    flex-wrap:wrap;
+  }
+  .project-head h3{
+    font-family: var(--serif);
+    font-weight:400;
+    color: var(--accent);
+    font-size: clamp(28px, 4.5vw, 48px);
+    margin:0;
+  }
+  .project-head .years{
+    color: var(--text-dim);
+    font-size:16px;
+  }
+  .project p{
+    font-size:16px;
+    line-height:2;
+    margin: 16px 0 4px 0;
+  }
+  .soon{ color: var(--text-dim); font-size:16px; }
+
+  .contact-headline{
+    font-family: var(--serif);
+    font-weight:400;
+    color: var(--accent);
+    font-size: clamp(28px, 5vw, 48px);
+    line-height:1.3;
+    margin: 0 0 36px 0;
+  }
+  .contact-links{ font-size:16px; }
+  .contact-links a{ text-decoration:underline; }
+  .contact-links a:hover, .contact-links a:focus-visible{ color: var(--accent); }
+  .sep{ color: var(--text-dim); margin: 0 12px; }
+
+  footer{
+    padding: 24px 24px calc(24px + env(safe-area-inset-bottom, 0px));
+    text-align:center;
+    color: var(--text-dim);
+    font-size:13px;
+  }
+
+  @media (max-width:520px){
+    nav{ gap:20px; font-size:14px; }
+    section{ padding: 40px 20px; }
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#hello">Hello</a>
+    <a href="#work">Selected Works</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="hello">
+  <div class="wrap">
+    <div class="hero-top">
+      <h1>Hello, I'm Kara Mongell</h1>
+      <div class="icon-swap" id="iconSwap" aria-hidden="true"></div>
+    </div>
+    <p class="bio">
+      Currently UX Designer @ Plymouth Rock Assurance.<br>
+      Previously Lead Senior Designer @ Scratch Marketing + Media.
+    </p>
+    <p class="bio">
+      Impact-driven Product Designer with 10+ years of combined experience of branding and UX design, shaping digital products across various industries and their verticals, including SaaS, biotechnology, and insurance. Translating data systems and complex flows into effortless, customer-centric digital products and modern internal tools. Most comfortable untangling the messy, complicated stuff — legacy code, vendor dependencies, systems that don't talk to each other easily.
+    </p>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <h2>+ Selected Works</h2>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Dispatch Tool</h3>
+        <span class="years">2025–present</span>
+      </div>
+      <p>Redesigning an outdated internal claims tool with many broken pieces scattered through different tools, into one unified system.</p>
+      <p class="soon">Case study coming soon!</p>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Mobile App 2.0</h3>
+        <span class="years">2021–2022</span>
+      </div>
+      <p>Designing a new easy-to-use mobile app to manage insurance policies.</p>
+      <p class="soon">Case study coming soon!</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>+ Contact</h2>
+    <p class="contact-headline">You made it to the end! Feel free to contact me.</p>
+    <p class="contact-links">
+      <a href="mailto:karamongell@gmail.com">Email</a>
+      <span class="sep">*</span>
+      <a href="https://www.linkedin.com/in/karamongell" target="_blank" rel="noopener">LinkedIn</a>
+    </p>
+  </div>
+</section>
+
+<footer>© 2026 Kara Mongell</footer>
+
+<script>
+(function(){
+  var icons = [
+    '<svg viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M58 29C58 45.0164 45.0164 58 29 58C12.9837 58 0 45.0164 0 29C0 12.9837 12.9837 0 29 0C45.0164 0 58 12.9837 58 29ZM21.2668 24.0594C23.9953 24.0594 26.2074 21.8473 26.2074 19.1185C26.2074 16.3899 23.9953 14.1778 21.2668 14.1778C18.538 14.1778 16.3259 16.3899 16.3259 19.1185C16.3259 21.8473 18.538 24.0594 21.2668 24.0594ZM36.7333 24.0594C39.462 24.0594 41.6741 21.8473 41.6741 19.1185C41.6741 16.3899 39.462 14.1778 36.7333 14.1778C34.0047 14.1778 31.7926 16.3899 31.7926 19.1185C31.7926 21.8473 34.0047 24.0594 36.7333 24.0594ZM29.2148 39.0963C22.5711 39.0963 17.1852 33.7104 17.1852 27.0668H12.0296C12.0296 36.5577 19.7238 44.252 29.2148 44.252C38.706 44.252 46.4 36.5577 46.4 27.0668H41.2443C41.2443 33.7104 35.8587 39.0963 29.2148 39.0963Z" fill="#1F74FF"/></svg>',
+    '<svg viewBox="0 0 58 56" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.3328 54.3817C12.8314 55.4698 14.5712 55.995 16.2983 55.995C18.8976 55.995 21.4628 54.8053 23.1137 52.5695C23.1184 52.5648 23.1229 52.5598 23.1271 52.5546C23.1311 52.5494 23.1351 52.5441 23.1388 52.5389L23.1445 52.5307C23.1485 52.5252 23.1522 52.5198 23.156 52.5145L28.9978 44.4826L34.8396 52.5145C34.8454 52.5232 34.8513 52.53 34.8571 52.5374C34.8598 52.5409 34.8623 52.5444 34.865 52.5484C37.6167 56.2957 42.9039 57.1212 46.6672 54.3859C50.4347 51.6509 51.2771 46.3625 48.5593 42.5859L48.5533 42.5764C48.5483 42.5684 48.5443 42.5625 48.5381 42.5562L42.709 34.5199L52.1533 31.4461C56.5897 30.0023 59.0279 25.2137 57.5844 20.7762C56.1411 16.339 51.3575 13.9003 46.9168 15.3399L37.4728 18.4011L37.4686 8.46381C37.4641 3.79789 33.6669 0 29.002 0C24.3371 0 20.54 3.79789 20.5358 8.46804L20.5273 18.3969L11.0831 15.3356C11.0793 15.3356 11.0748 15.3348 11.0702 15.3335C11.0642 15.3319 11.0581 15.3295 11.0534 15.3271C6.62126 13.9045 1.8547 16.3433 0.415426 20.7723C-1.02387 25.201 1.39755 29.9727 5.81272 31.4292C5.8168 31.4304 5.82046 31.4319 5.82397 31.4334L5.83953 31.4394L5.84663 31.4419L15.2866 34.5156L9.45747 42.552C9.45535 42.5562 9.45222 42.5605 9.44905 42.5647C9.44584 42.5689 9.44271 42.5732 9.44059 42.5774C6.71862 46.354 7.56527 51.6467 11.3328 54.3817Z" fill="#1F74FF"/></svg>',
+    '<svg viewBox="0 0 58 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M58 18C58 18 45.0163 36 29 36C12.9838 36 0 18 0 18C0 18 12.9838 0 29 0C45.0163 0 58 18 58 18ZM42.2358 18C42.2358 25.2328 36.3101 31.0962 29 31.0962C21.6899 31.0962 15.7641 25.2328 15.7641 18C15.7641 10.7672 21.6899 4.90377 29 4.90377C36.3101 4.90377 42.2358 10.7672 42.2358 18ZM29 25.5045C33.1889 25.5045 36.5846 22.1446 36.5846 18C36.5846 13.8554 33.1889 10.4955 29 10.4955C24.8111 10.4955 21.4154 13.8554 21.4154 18C21.4154 22.1446 24.8111 25.5045 29 25.5045Z" fill="#1F74FF"/></svg>',
+    '<svg viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M57.9978 28.9979C57.9978 28.9979 58.3418 15.6724 50.3346 7.66529C42.3276 -0.341634 29.0021 0.00214995 29.0021 0.00214995C29.0021 0.00214995 29.0003 0.0707836 29 0.201122C29 0.146076 28.9995 0.102039 28.9992 0.0695213C28.9987 0.0250546 28.9979 0.00214995 28.9979 0.00214995C28.9979 0.00214995 15.6724 -0.341634 7.66529 7.66529C-0.341634 15.6724 0.00214995 28.9979 0.00214995 28.9979C0.00214995 28.9979 13.3278 29.3416 21.3346 21.3346C28.6533 14.0162 28.9954 2.25424 29 0.285813C29.0048 2.25424 29.3469 14.0162 36.6654 21.3346C44.6723 29.3416 57.9978 28.9979 57.9978 28.9979ZM7.66529 50.3346C-0.341634 42.3276 0.00214995 29.0021 0.00214995 29.0021C0.00214995 29.0021 13.3278 28.6584 21.3346 36.6654C28.6533 43.9839 28.9954 55.7458 29 57.7143C29.0048 55.7458 29.3469 43.9839 36.6654 36.6654C44.6723 28.6584 57.9978 29.0021 57.9978 29.0021C57.9978 29.0021 58.3418 42.3276 50.3346 50.3346C42.3276 58.3416 29.0021 57.9979 29.0021 57.9979C29.0021 57.9979 29.0003 57.9291 29 57.7989C28.9997 57.9291 28.9979 57.9979 28.9979 57.9979C28.9979 57.9979 15.6724 58.3416 7.66529 50.3346Z" fill="#1F74FF"/></svg>'
+  ];
+  var el = document.getElementById('iconSwap');
+  var idx = 0;
+  el.innerHTML = icons[0];
+  var timer = null;
+  function cycle(){
+    idx = (idx + 1) % icons.length;
+    el.innerHTML = icons[idx];
+  }
+  el.addEventListener('mouseenter', function(){
+    if (timer) clearInterval(timer);
+    timer = setInterval(cycle, 450);
+  });
+  el.addEventListener('mouseleave', function(){
+    if (timer) clearInterval(timer);
+    timer = null;
+    idx = 0;
+    el.innerHTML = icons[0];
+  });
+})();
+</script>
+</body>
+</html>
