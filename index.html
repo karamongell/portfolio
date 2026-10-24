@@ -588,6 +588,33 @@
   #autopay .ap-val{ font-size:13px; line-height:1.3; color: var(--text); }
   #autopay .ap-arrow{ width:16px; height:16px; color: var(--text-dim); }
   #autopay .ap-grid-2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  #autopay .ap-slide{ display:none; padding:32px 32px 8px; min-width:0; }
+  #autopay .ap-slide.is-active{ display:block; }
+  #autopay .ap-slide-cap{ font-size:13px; letter-spacing:.08em; text-transform:uppercase; color: var(--accent); }
+  #autopay .ap-slide-title{ font-family: var(--serif); font-weight:400; font-size:28px; line-height:1.25; color: var(--text); margin:8px 0 0 0; }
+  #autopay .ap-slide-dek{ font-size:15px; line-height:1.8; color: var(--text-dim); margin:8px 0 0 0; max-width:640px; }
+  #autopay .ap-badge{ display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background: var(--accent); color: var(--bg); font-size:12px; font-weight:500; line-height:1; flex-shrink:0; }
+  #autopay .ap-journey{ list-style:none; margin:24px -32px 0; padding:0 32px 12px; display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-padding:0 32px; scrollbar-width:thin; scrollbar-color: rgba(255,255,255,0.28) transparent; }
+  #autopay .ap-journey::-webkit-scrollbar{ height:6px; }
+  #autopay .ap-journey::-webkit-scrollbar-thumb{ background: rgba(255,255,255,0.28); border-radius:3px; }
+  #autopay .ap-journey:focus-visible{ outline:2px solid var(--accent); outline-offset:-2px; }
+  #autopay .ap-journey li{ flex:0 0 220px; scroll-snap-align:start; display:flex; flex-direction:column; gap:12px; }
+  #autopay .ap-journey img{ display:block; width:100%; aspect-ratio: 592 / 440; object-fit:cover; object-position:top; border-radius:8px; background:#fff; }
+  #autopay .ap-jt{ display:flex; align-items:center; gap:10px; font-size:16px; line-height:1.3; color: var(--text); }
+  #autopay .ap-journey p{ margin:0; font-size:14px; line-height:1.7; color: var(--text-dim); }
+  #autopay .ap-closeup{ display:block; width:100%; height:auto; border-radius:8px; margin-top:24px; }
+  #autopay .ap-callouts{ list-style:none; margin:24px 0 0 0; padding:0; display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:20px 32px; }
+  #autopay .ap-callouts li{ display:flex; gap:12px; align-items:flex-start; }
+  #autopay .ap-callouts .ap-badge{ margin-top:2px; }
+  #autopay .ap-callouts .t{ font-size:16px; line-height:1.4; color: var(--text); }
+  #autopay .ap-callouts p{ margin:4px 0 0 0; font-size:14px; line-height:1.7; color: var(--text-dim); }
+  @media (max-width:520px){
+    #autopay .ap-slide{ padding:24px 20px 4px; }
+    #autopay .ap-slide-title{ font-size:24px; }
+    #autopay .ap-journey{ margin:20px -20px 0; padding:0 20px 12px; scroll-padding:0 20px; }
+    #autopay .ap-journey li{ flex-basis:200px; }
+    #autopay .ap-callouts{ grid-template-columns:1fr; gap:16px; }
+  }
   @media (max-width:720px){
     #autopay .ap-steps-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
     #autopay .edge-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); gap:16px; }
@@ -1419,7 +1446,63 @@
       <div class="edge-card"><h3>Pay plan and AutoPay tangled</h3><p>Change Pay Plan mixed installment counts with payment type, and used checkboxes for what was really a single choice.</p></div>
       <div class="edge-card"><h3>No shared view of methods</h3><p>Nothing showed all of a customer's cards and accounts in one place, or which one AutoPay was using.</p></div>
     </div>
-    <div class="shot ap-wide">Audit flow map coming soon</div>
+    <div class="shot-carousel ap-carousel" id="apAuditCarousel">
+      <div class="ap-slides">
+
+        <div class="ap-slide is-active" aria-hidden="false">
+          <div class="ap-slide-cap">Audit · Current state</div>
+          <h3 class="ap-slide-title">The existing payment journey, end to end</h3>
+          <p class="ap-slide-dek">Five screens stand between a customer and a completed payment. Each step introduces a new layout pattern and competing content.</p>
+          <ol class="ap-journey" tabindex="0" aria-label="Five screens in the current payment journey, scrollable">
+            <li><img src="assets/autopay-audit-step-1.webp" alt="Current account home page" loading="lazy"><div class="ap-jt"><span class="ap-badge">1</span>Account home</div><p>Past due alert, balance and "Make Payment" compete with promos and the help center.</p></li>
+            <li><img src="assets/autopay-audit-step-2.webp" alt="Current Change Pay Plan page" loading="lazy"><div class="ap-jt"><span class="ap-badge">2</span>Change pay plan</div><p>Complex rules limit which methods work with which plans, and saved wallet or AutoPay methods aren't shown.</p></li>
+            <li><img src="assets/autopay-audit-step-3.webp" alt="Current Manage Payment Methods page" loading="lazy"><div class="ap-jt"><span class="ap-badge">3</span>Manage payment methods</div><p>Saved cards and bank accounts live on their own page, where Edit and Remove carry the same weight.</p></li>
+            <li><img src="assets/autopay-audit-step-4.webp" alt="Current Make a Payment page" loading="lazy"><div class="ap-jt"><span class="ap-badge">4</span>Make a payment</div><p>A generic AutoPay warning leads the page whether or not the customer is on it. Payment method is a single choice built from checkboxes.</p></li>
+            <li><img src="assets/autopay-audit-step-5.webp" alt="Current payment Review page" loading="lazy"><div class="ap-jt"><span class="ap-badge">5</span>Review</div><p>Cancel, Edit Info and Authorize carry similar weight. The authorization terms sit below the buttons.</p></li>
+          </ol>
+        </div>
+
+        <div class="ap-slide" aria-hidden="true">
+          <div class="ap-slide-cap">Audit · Close up</div>
+          <h3 class="ap-slide-title">Make a payment</h3>
+          <p class="ap-slide-dek">The core step of the flow, where most friction concentrates.</p>
+          <img class="ap-closeup" src="assets/autopay-audit-make-payment.webp" alt="Current Make a Payment page with five numbered callouts" loading="lazy">
+          <ol class="ap-callouts">
+            <li><span class="ap-badge">1</span><div><div class="t">Warning before the task</div><p>AutoPay fine print is the first thing on the page, ahead of the amount owed.</p></div></li>
+            <li><span class="ap-badge">2</span><div><div class="t">Savings that don't add up</div><p>"Pay in full and save" shows the same $8,889 as the minimum due and balance.</p></div></li>
+            <li><span class="ap-badge">3</span><div><div class="t">Amount hidden in a dropdown</div><p>The amount to pay is buried in a select menu with an extra help icon.</p></div></li>
+            <li><span class="ap-badge">4</span><div><div class="t">Checkboxes for one choice</div><p>Bank or card is a single choice styled as checkboxes, with copy explaining the UI.</p></div></li>
+            <li><span class="ap-badge">5</span><div><div class="t">Persistent help panel</div><p>The full help center repeats on every step and pulls focus from the form.</p></div></li>
+          </ol>
+        </div>
+
+        <div class="ap-slide" aria-hidden="true">
+          <div class="ap-slide-cap">Audit · Close up</div>
+          <h3 class="ap-slide-title">Manage payment methods</h3>
+          <p class="ap-slide-dek">Where customers save and maintain how they pay, and where the redesign changes the most.</p>
+          <img class="ap-closeup" src="assets/autopay-audit-manage-methods.webp" alt="Current Manage Payment Methods page with five numbered callouts" loading="lazy">
+          <ol class="ap-callouts">
+            <li><span class="ap-badge">1</span><div><div class="t">No status on saved methods</div><p>Cards show no expired or needs attention state, so problems surface only at checkout.</p></div></li>
+            <li><span class="ap-badge">2</span><div><div class="t">Split by type, not by use</div><p>Cards and bank accounts live in separate sections, so customers scan both to see their options.</p></div></li>
+            <li><span class="ap-badge">3</span><div><div class="t">Default is unclear</div><p>A small unlabeled star marks the default method, but its meaning isn't explained.</p></div></li>
+            <li><span class="ap-badge">4</span><div><div class="t">Competing primary actions</div><p>Two full width orange "Add" buttons carry the same weight as the main payment button.</p></div></li>
+            <li><span class="ap-badge">5</span><div><div class="t">AutoPay method not shown</div><p>Nothing shows which saved method AutoPay uses, even when the customer is enrolled.</p></div></li>
+          </ol>
+        </div>
+
+      </div>
+      <div class="carousel-dots" aria-label="Audit slides">
+        <button type="button" class="carousel-nav" data-dir="-1" aria-label="Previous slide">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+        </button>
+        <button type="button" class="dot is-active" aria-label="Slide 1" aria-current="true"></button>
+        <button type="button" class="dot" aria-label="Slide 2"></button>
+        <button type="button" class="dot" aria-label="Slide 3"></button>
+        <button type="button" class="carousel-nav" data-dir="1" aria-label="Next slide">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1796,6 +1879,23 @@
       if (helloLink.classList.contains('is-open') && !helloLink.contains(e.target)) hgTouchHide();
     });
   }
+})();
+</script>
+<script>
+(function(){
+  var c = document.getElementById('apAuditCarousel');
+  if (!c) return;
+  var slides = c.querySelectorAll('.ap-slide');
+  var dots = c.querySelectorAll('.carousel-dots .dot');
+  var i = 0;
+  function show(n){
+    i = (n + slides.length) % slides.length;
+    slides.forEach(function(s, k){ var on = k === i; s.classList.toggle('is-active', on); s.setAttribute('aria-hidden', on ? 'false' : 'true'); });
+    dots.forEach(function(d, k){ var on = k === i; d.classList.toggle('is-active', on); if (on) d.setAttribute('aria-current','true'); else d.removeAttribute('aria-current'); });
+  }
+  dots.forEach(function(d, k){ d.addEventListener('click', function(){ show(k); }); });
+  c.querySelectorAll('.carousel-nav').forEach(function(b){ b.addEventListener('click', function(){ show(i + Number(b.dataset.dir)); }); });
+  c.addEventListener('keydown', function(e){ if (e.target.closest('.ap-journey')) return; if (e.key === 'ArrowRight') show(i + 1); if (e.key === 'ArrowLeft') show(i - 1); });
 })();
 </script>
 </body>
