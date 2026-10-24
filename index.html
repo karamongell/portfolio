@@ -692,6 +692,9 @@
     #autopay .ap-journey-card .ap-journey{ margin-left:-20px; margin-right:-20px; }
     #autopay #apAuditCarousel .ap-scroll{ max-height:360px; }
   }
+  #autopay .ap-pinned{ position:relative; }
+  #autopay .ap-pin{ position:absolute; transform:translate(-50%,-50%); width:28px; height:28px; border-radius:50%; background:#1C1D24; color:#fff; border:2px solid var(--accent); box-shadow:0 2px 6px rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:500; line-height:1; pointer-events:none; }
+  @media (max-width:520px){ #autopay .ap-pin{ width:20px; height:20px; font-size:11px; border-width:1.5px; } }
   .ap-lightbox{ border:none; padding:0; margin:auto; width:min(1200px, calc(100vw - 32px)); max-width:none; max-height:calc(100vh - 32px); background:#fff; border-radius:12px; overflow:hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.6); }
   .ap-lightbox::backdrop{ background: rgba(14,15,20,0.82); }
   .ap-lightbox-bar{ position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; gap:12px; height:44px; padding:0 8px 0 16px; background:#2A2B35; color: rgba(255,255,255,0.7); font-family: var(--mono); font-size:13px; }
@@ -1541,11 +1544,11 @@
           <p class="ap-slide-dek">The core step of the flow, where most friction concentrates.</p>
           <div class="ap-frame">
             <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Current portal · Make a payment</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
-            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Make a payment"><img src="assets/autopay-audit-make-payment.webp" alt="Current Make a Payment page with five numbered callouts" loading="lazy"><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
+            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Make a payment"><div class="ap-pinned"><img src="assets/autopay-audit-step-4.webp" alt="Current Make a Payment page with five numbered callouts" loading="lazy"><span class="ap-pin" style="left:12.6%;top:14.5%" aria-hidden="true">1</span><span class="ap-pin" style="left:14.5%;top:65.3%" aria-hidden="true">2</span><span class="ap-pin" style="left:46%;top:35.5%" aria-hidden="true">3</span><span class="ap-pin" style="left:47%;top:52.5%" aria-hidden="true">4</span><span class="ap-pin" style="left:60.6%;top:11.6%" aria-hidden="true">5</span></div><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
           </div>
           <ol class="ap-callouts">
             <li><span class="ap-badge">1</span><div><div class="t">Warning before the task</div><p>AutoPay fine print is the first thing on the page, ahead of the amount owed.</p></div></li>
-            <li><span class="ap-badge">2</span><div><div class="t">Savings that don't add up</div><p>"Pay in full and save" shows the same $8,889 as the minimum due and balance.</p></div></li>
+            <li><span class="ap-badge">2</span><div><div class="t">Saved cards tucked under a type</div><p>Saved cards show up only after picking Credit/Debit Card, and still ask for the CVV.</p></div></li>
             <li><span class="ap-badge">3</span><div><div class="t">Amount hidden in a dropdown</div><p>The amount to pay is buried in a select menu with an extra help icon.</p></div></li>
             <li><span class="ap-badge">4</span><div><div class="t">Checkboxes for one choice</div><p>Bank or card is a single choice styled as checkboxes, with copy explaining the UI.</p></div></li>
             <li><span class="ap-badge">5</span><div><div class="t">Persistent help panel</div><p>The full help center repeats on every step and pulls focus from the form.</p></div></li>
@@ -1558,12 +1561,12 @@
           <p class="ap-slide-dek">Where customers save and maintain how they pay, and where the redesign changes the most.</p>
           <div class="ap-frame">
             <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Current portal · Manage payment methods</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
-            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Manage payment methods"><img src="assets/autopay-audit-manage-methods.webp" alt="Current Manage Payment Methods page with five numbered callouts" loading="lazy"><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
+            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Manage payment methods"><div class="ap-pinned"><img src="assets/autopay-audit-step-3.webp" alt="Current Manage Payment Methods page with five numbered callouts" loading="lazy"><span class="ap-pin" style="left:13.6%;top:39.7%" aria-hidden="true">1</span><span class="ap-pin" style="left:13.4%;top:59.5%" aria-hidden="true">2</span><span class="ap-pin" style="left:58.6%;top:35.1%" aria-hidden="true">3</span><span class="ap-pin" style="left:57.5%;top:51.4%" aria-hidden="true">4</span><span class="ap-pin" style="left:12.6%;top:22%" aria-hidden="true">5</span></div><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
           </div>
           <ol class="ap-callouts">
             <li><span class="ap-badge">1</span><div><div class="t">No status on saved methods</div><p>Cards show no expired or needs attention state, so problems surface only at checkout.</p></div></li>
             <li><span class="ap-badge">2</span><div><div class="t">Split by type, not by use</div><p>Cards and bank accounts live in separate sections, so customers scan both to see their options.</p></div></li>
-            <li><span class="ap-badge">3</span><div><div class="t">Default is unclear</div><p>A small unlabeled star marks the default method, but its meaning isn't explained.</p></div></li>
+            <li><span class="ap-badge">3</span><div><div class="t">Default isn't explained</div><p>A star marks the default card, but nothing says what default means or whether AutoPay uses it.</p></div></li>
             <li><span class="ap-badge">4</span><div><div class="t">Competing primary actions</div><p>Two full width orange "Add" buttons carry the same weight as the main payment button.</p></div></li>
             <li><span class="ap-badge">5</span><div><div class="t">AutoPay method not shown</div><p>Nothing shows which saved method AutoPay uses, even when the customer is enrolled.</p></div></li>
           </ol>
@@ -1685,7 +1688,7 @@
         <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Customer portal · Make a payment</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
         <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Make a payment">
           <img class="ap-after" src="assets/autopay-solution-make-payment.webp" alt="Redesigned Make a payment page with an Automatic payment scheduled banner, payment amount, and a list of saved payment methods" loading="lazy">
-          <img class="ap-before" src="assets/autopay-audit-make-payment.webp" alt="Current Make a Payment page with five numbered callouts" loading="lazy">
+          <div class="ap-pinned ap-before"><img src="assets/autopay-audit-step-4.webp" alt="Current Make a Payment page with five numbered callouts" loading="lazy"><span class="ap-pin" style="left:12.6%;top:14.5%" aria-hidden="true">1</span><span class="ap-pin" style="left:14.5%;top:65.3%" aria-hidden="true">2</span><span class="ap-pin" style="left:46%;top:35.5%" aria-hidden="true">3</span><span class="ap-pin" style="left:47%;top:52.5%" aria-hidden="true">4</span><span class="ap-pin" style="left:60.6%;top:11.6%" aria-hidden="true">5</span></div>
           <span class="ap-scroll-hint" aria-hidden="true">Scroll</span>
         </div>
       </div>
@@ -1774,7 +1777,7 @@
         <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Customer portal · Manage payment methods</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
         <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Manage payment methods">
           <img class="ap-after" src="assets/autopay-solution-manage-methods.webp" alt="Redesigned Manage payment methods page with one list of cards and bank accounts, an Automatic Payment tag on Visa 4567, an Expired tag on Amex 1111, and one Add Payment Method button" loading="lazy">
-          <img class="ap-before" src="assets/autopay-audit-manage-methods.webp" alt="Current Manage Payment Methods page with five numbered callouts" loading="lazy">
+          <div class="ap-pinned ap-before"><img src="assets/autopay-audit-step-3.webp" alt="Current Manage Payment Methods page with five numbered callouts" loading="lazy"><span class="ap-pin" style="left:13.6%;top:39.7%" aria-hidden="true">1</span><span class="ap-pin" style="left:13.4%;top:59.5%" aria-hidden="true">2</span><span class="ap-pin" style="left:58.6%;top:35.1%" aria-hidden="true">3</span><span class="ap-pin" style="left:57.5%;top:51.4%" aria-hidden="true">4</span><span class="ap-pin" style="left:12.6%;top:22%" aria-hidden="true">5</span></div>
           <span class="ap-scroll-hint" aria-hidden="true">Scroll</span>
         </div>
       </div>
