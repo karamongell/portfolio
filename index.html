@@ -660,8 +660,6 @@
   #autopay .ap-scroll::-webkit-scrollbar-thumb{ background: rgba(0,0,0,0.25); border-radius:3px; }
   #autopay .ap-scroll:focus-visible{ outline:2px solid var(--accent); outline-offset:-2px; }
   #autopay .ap-scroll img{ display:block; width:100%; height:auto; }
-  /* Crop the 1440 canvas to its content column (x 300 to 1140) so text reads at close to real size */
-  #autopay .ap-scroll img.ap-crop{ width:171.43%; max-width:none; margin-left:-35.71%; }
   #autopay .ap-frame[data-view="after"] .ap-before, #autopay .ap-frame[data-view="before"] .ap-after{ display:none; }
   #autopay .ap-scroll-hint{ position:sticky; bottom:12px; float:right; margin:-40px 12px 0 0; display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:999px; background: rgba(28,29,36,0.82); color:#fff; font-size:12px; line-height:1; pointer-events:none; transition: opacity .3s; }
   #autopay .ap-scroll-hint::before{ content:""; width:6px; height:6px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); }
@@ -691,7 +689,7 @@
   .ap-lightbox-close:hover, .ap-lightbox-close:focus-visible{ background: rgba(255,255,255,0.1); outline:none; }
   .ap-lightbox-close svg{ width:18px; height:18px; }
   .ap-lightbox-body{ overflow:auto; max-height:calc(100vh - 76px); }
-  .ap-lightbox-body img{ display:block; width:100%; min-width:900px; height:auto; }
+  .ap-lightbox-body img{ display:block; width:100%; height:auto; }
   @media (max-width:720px){
     #autopay .ap-stepper{ grid-template-columns: repeat(2, minmax(0,1fr)); }
   }
@@ -700,8 +698,6 @@
     #autopay .ap-card-head{ flex-direction:column; gap:16px; }
     #autopay .ap-flow-head{ padding:24px 20px 0; }
     #autopay .ap-scroll{ max-height:440px; }
-    /* Tighter crop on phones: x 340 to 1100 */
-    #autopay .ap-scroll img.ap-crop{ width:189.47%; margin-left:-44.74%; }
     #autopay .ap-stepper button{ padding:8px 10px; font-size:13px; gap:8px; }
     #autopay .ap-frame-label{ text-align:left; }
   }
@@ -1672,7 +1668,7 @@
       <div class="ap-frame" data-view="after">
         <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Customer portal · Make a payment</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
         <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Make a payment">
-          <img class="ap-after ap-crop" src="assets/autopay-solution-make-payment.webp" alt="Redesigned Make a payment page with an Automatic payment scheduled banner, payment amount, and a list of saved payment methods" loading="lazy">
+          <img class="ap-after" src="assets/autopay-solution-make-payment.webp" alt="Redesigned Make a payment page with an Automatic payment scheduled banner, payment amount, and a list of saved payment methods" loading="lazy">
           <img class="ap-before" src="assets/autopay-audit-make-payment.webp" alt="Current Make a Payment page with five numbered callouts" loading="lazy">
           <span class="ap-scroll-hint" aria-hidden="true">Scroll</span>
         </div>
@@ -1703,7 +1699,7 @@
           <p class="ap-slide-dek"><strong>Choose how often to pay.</strong> Pay plan is a single choice, so it's a radio list. How often to pay is separate from how to pay.</p>
           <div class="ap-frame">
             <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Step 1 · Payment plan</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
-            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Payment plan"><img class="ap-crop" src="assets/autopay-flow-1-plan.webp" alt="Payment plan step with Pay in 4, Pay in 10, Pay in 12 and Pay in full as radio options" loading="lazy"><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
+            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Payment plan"><img src="assets/autopay-flow-1-plan.webp" alt="Payment plan step with Pay in 4, Pay in 10, Pay in 12 and Pay in full as radio options" loading="lazy"><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
           </div>
         </div>
 
@@ -1711,7 +1707,7 @@
           <p class="ap-slide-dek"><strong>Pick a saved method.</strong> The same list as Make a Payment. Expired cards can't be chosen, and a link adds a new card or bank account.</p>
           <div class="ap-frame">
             <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Step 2 · Payment method</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
-            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Payment method"><img class="ap-crop" src="assets/autopay-flow-2-method.webp" alt="Payment method step with Visa 4567 selected, an expired Amex greyed out, and a checking account" loading="lazy"><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
+            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Payment method"><img src="assets/autopay-flow-2-method.webp" alt="Payment method step with Visa 4567 selected, an expired Amex greyed out, and a checking account" loading="lazy"><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
           </div>
         </div>
 
@@ -1719,7 +1715,7 @@
           <p class="ap-slide-dek"><strong>Review current against updated.</strong> Each updated value links back to its step, and the button says exactly what it does.</p>
           <div class="ap-frame">
             <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Step 3 · Review</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
-            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Review automatic payments"><img class="ap-crop" src="assets/autopay-flow-3-review.webp" alt="Review automatic payments step listing the current method and schedule above the updated ones, with an Update automatic payments button" loading="lazy"><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
+            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Review automatic payments"><img src="assets/autopay-flow-3-review.webp" alt="Review automatic payments step listing the current method and schedule above the updated ones, with an Update automatic payments button" loading="lazy"><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
           </div>
         </div>
 
@@ -1727,7 +1723,7 @@
           <p class="ap-slide-dek"><strong>Confirm in plain words.</strong> The new method and schedule, plus a note that the current bill isn't affected.</p>
           <div class="ap-frame">
             <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Step 4 · Confirmation</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
-            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Automatic payments scheduled"><img class="ap-crop" src="assets/autopay-flow-4-confirm.webp" alt="Automatic payments scheduled confirmation showing Visa 4567 and Pay in 4" loading="lazy"><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
+            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Automatic payments scheduled"><img src="assets/autopay-flow-4-confirm.webp" alt="Automatic payments scheduled confirmation showing Visa 4567 and Pay in 4" loading="lazy"><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
           </div>
         </div>
 
@@ -1761,7 +1757,7 @@
       <div class="ap-frame" data-view="after">
         <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Customer portal · Manage payment methods</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
         <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Manage payment methods">
-          <img class="ap-after ap-crop" src="assets/autopay-solution-manage-methods.webp" alt="Redesigned Manage payment methods page with one list of cards and bank accounts, an Automatic Payment tag on Visa 4567, an Expired tag on Amex 1111, and one Add Payment Method button" loading="lazy">
+          <img class="ap-after" src="assets/autopay-solution-manage-methods.webp" alt="Redesigned Manage payment methods page with one list of cards and bank accounts, an Automatic Payment tag on Visa 4567, an Expired tag on Amex 1111, and one Add Payment Method button" loading="lazy">
           <img class="ap-before" src="assets/autopay-audit-manage-methods.webp" alt="Current Manage Payment Methods page with five numbered callouts" loading="lazy">
           <span class="ap-scroll-hint" aria-hidden="true">Scroll</span>
         </div>
