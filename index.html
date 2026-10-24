@@ -695,6 +695,21 @@
   #autopay .ap-pinned{ position:relative; }
   #autopay .ap-pin{ position:absolute; transform:translate(-50%,-50%); width:28px; height:28px; border-radius:50%; background:#1C1D24; color:#fff; border:2px solid var(--accent); box-shadow:0 2px 6px rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:500; line-height:1; pointer-events:none; }
   @media (max-width:520px){ #autopay .ap-pin{ width:20px; height:20px; font-size:11px; border-width:1.5px; } }
+  /* Journey strip: bold scrollbar and drag to scroll */
+  #autopay .ap-journey-card .ap-journey{ padding-bottom:20px; scrollbar-width:auto; scrollbar-color: var(--accent) rgba(255,255,255,0.1); cursor:grab; }
+  #autopay .ap-journey-card .ap-journey::-webkit-scrollbar{ height:10px; }
+  #autopay .ap-journey-card .ap-journey::-webkit-scrollbar-track{ background: rgba(255,255,255,0.1); border-radius:999px; margin:0 32px; }
+  #autopay .ap-journey-card .ap-journey::-webkit-scrollbar-thumb{ background: var(--accent); border-radius:999px; }
+  #autopay .ap-journey-card .ap-journey::-webkit-scrollbar-thumb:hover{ background:#7AA9FF; }
+  #autopay .ap-journey.is-dragging{ cursor:grabbing; scroll-snap-type:none; user-select:none; -webkit-user-select:none; }
+  @media (max-width:520px){ #autopay .ap-journey-card .ap-journey::-webkit-scrollbar-track{ margin:0 20px; } }
+  /* Custom scrollbar for the journey strip, always visible */
+  #autopay .ap-journey-card .ap-journey{ scrollbar-width:none; padding-bottom:4px; }
+  #autopay .ap-journey-card .ap-journey::-webkit-scrollbar{ display:none; }
+  #autopay .ap-track{ position:relative; height:10px; margin-top:20px; border-radius:999px; background: rgba(255,255,255,0.1); cursor:pointer; touch-action:none; }
+  #autopay .ap-thumb{ position:absolute; top:0; bottom:0; left:0; width:30%; border-radius:999px; background: var(--accent); cursor:grab; transition: background .15s; }
+  #autopay .ap-thumb:hover, #autopay .ap-track.is-dragging .ap-thumb{ background:#7AA9FF; }
+  #autopay .ap-track.is-dragging .ap-thumb{ cursor:grabbing; }
   .ap-lightbox{ border:none; padding:0; margin:auto; width:min(1200px, calc(100vw - 32px)); max-width:none; max-height:calc(100vh - 32px); background:#fff; border-radius:12px; overflow:hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.6); }
   .ap-lightbox::backdrop{ background: rgba(14,15,20,0.82); }
   .ap-lightbox-bar{ position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; gap:12px; height:44px; padding:0 8px 0 16px; background:#2A2B35; color: rgba(255,255,255,0.7); font-family: var(--mono); font-size:13px; }
@@ -1534,6 +1549,7 @@
         <li><img src="assets/autopay-audit-step-4.webp" alt="Current Make a Payment page" loading="lazy"><div class="ap-jt"><span class="ap-badge">4</span>Make a payment</div><p>A generic AutoPay warning leads the page whether or not the customer is on it. Payment method is a single choice built from checkboxes.</p></li>
         <li><img src="assets/autopay-audit-step-5.webp" alt="Current payment Review page" loading="lazy"><div class="ap-jt"><span class="ap-badge">5</span>Review</div><p>Cancel, Edit Info and Authorize carry similar weight. The authorization terms sit below the buttons.</p></li>
       </ol>
+      <div class="ap-track" aria-hidden="true"><span class="ap-thumb"></span></div>
     </div>
     <div class="shot-carousel ap-carousel" id="apAuditCarousel">
       <div class="ap-slides">
@@ -2117,6 +2133,55 @@
   window.addEventListener('resize', refresh);
   window.addEventListener('hashchange', function(){ setTimeout(refresh, 50); });
   setTimeout(refresh, 300);
+  // Journey strip: click and drag to scroll (not on screenshots, which open full size)
+  root.querySelectorAll('.ap-journey').forEach(function(strip){
+    var down = false, moved = false, startX = 0, startLeft = 0;
+    strip.addEventListener('pointerdown', function(e){
+      if (e.pointerType !== 'mouse' || e.button !== 0 || e.target.closest('img')) return;
+      down = true; moved = false; startX = e.clientX; startLeft = strip.scrollLeft;
+    });
+    window.addEventListener('pointermove', function(e){
+      if (!down) return;
+      var dx = e.clientX - startX;
+      if (!moved && Math.abs(dx) > 4){ moved = true; strip.classList.add('is-dragging'); }
+      if (moved){ strip.scrollLeft = startLeft - dx; e.preventDefault(); }
+    });
+    window.addEventListener('pointerup', function(){
+      if (!down) return; down = false;
+      if (moved){
+        // let snapping settle on the nearest screen after the drag ends
+        var left = strip.scrollLeft; strip.classList.remove('is-dragging'); strip.scrollLeft = left;
+      }
+    });
+    strip.addEventListener('dragstart', function(e){ e.preventDefault(); });
+  });
+  // Journey strip: always visible scrollbar you can drag or click
+  root.querySelectorAll('.ap-journey').forEach(function(strip){
+    var track = strip.parentNode.querySelector('.ap-track'); if (!track) return;
+    var thumb = track.querySelector('.ap-thumb');
+    function sync(){
+      var max = strip.scrollWidth - strip.clientWidth;
+      track.hidden = max <= 2;
+      var w = strip.clientWidth / strip.scrollWidth;
+      thumb.style.width = (w * 100) + '%';
+      thumb.style.left = (max > 0 ? strip.scrollLeft / max * (1 - w) * 100 : 0) + '%';
+    }
+    strip.addEventListener('scroll', sync, { passive:true });
+    window.addEventListener('resize', sync);
+    window.addEventListener('hashchange', function(){ setTimeout(sync, 60); });
+    strip.querySelectorAll('img').forEach(function(i){ i.addEventListener('load', sync); });
+    setTimeout(sync, 300);
+    var dragging = false, sx = 0, sl = 0;
+    thumb.addEventListener('pointerdown', function(e){ dragging = true; sx = e.clientX; sl = strip.scrollLeft; track.classList.add('is-dragging'); strip.classList.add('is-dragging'); thumb.setPointerCapture(e.pointerId); e.preventDefault(); e.stopPropagation(); });
+    thumb.addEventListener('pointermove', function(e){ if (!dragging) return; strip.scrollLeft = sl + (e.clientX - sx) * strip.scrollWidth / track.clientWidth; });
+    function end(){ if (!dragging) return; dragging = false; track.classList.remove('is-dragging'); var l = strip.scrollLeft; strip.classList.remove('is-dragging'); strip.scrollLeft = l; }
+    thumb.addEventListener('pointerup', end); thumb.addEventListener('pointercancel', end);
+    track.addEventListener('pointerdown', function(e){
+      if (e.target === thumb) return;
+      var r = track.getBoundingClientRect(), frac = (e.clientX - r.left) / r.width;
+      strip.scrollTo({ left: frac * strip.scrollWidth - strip.clientWidth / 2, behavior:'smooth' });
+    });
+  });
   // Before / After toggles
   root.querySelectorAll('.ap-card').forEach(function(card){
     var frame = card.querySelector('.ap-frame');
