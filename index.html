@@ -49,6 +49,18 @@
 
   /* ---------- Home ---------- */
 #home .hello-link{ position: relative; display: inline-block; }
+#home .hello-link::after{
+    content:""; position:absolute; left:0; right:0.18em; bottom:-0.12em; height:0.2em;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='10' viewBox='0 0 24 10'%3E%3Cpath d='M0 5 Q6 0 12 5 T24 5' fill='none' stroke='%234F8DFF' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x 0 50% / auto 100%;
+    pointer-events:none;
+  }
+@media (hover:hover){
+  #home .hello-link{ cursor: default; }
+  #home .hello-link:hover::after{ animation: helloWiggle .6s linear infinite; }
+}
+#home .hello-link.is-open::after, #home .hello-link:focus-visible::after{ animation: helloWiggle .6s linear infinite; }
+@keyframes helloWiggle{ to{ background-position: -2.4em 50%; } }
+@media (prefers-reduced-motion: reduce){ #home .hello-link::after{ animation:none !important; } }
 #home .hello-gif{
     display:none;
     position:absolute;
