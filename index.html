@@ -710,6 +710,11 @@
   #autopay .ap-thumb{ position:absolute; top:0; bottom:0; left:0; width:30%; border-radius:999px; background: var(--accent); cursor:grab; transition: background .15s; }
   #autopay .ap-thumb:hover, #autopay .ap-track.is-dragging .ap-thumb{ background:#7AA9FF; }
   #autopay .ap-track.is-dragging .ap-thumb{ cursor:grabbing; }
+  #autopay .ap-glance{ margin:32px 0 0; display:grid; gap:16px; }
+  #autopay .ap-glance > div{ display:grid; grid-template-columns: 120px minmax(0,1fr); gap:24px; }
+  #autopay .ap-glance dt{ color: var(--text-dim); font-size:13px; padding-top:4px; }
+  #autopay .ap-glance dd{ margin:0; font-size:16px; line-height:1.8; }
+  @media (max-width:520px){ #autopay .ap-glance > div{ grid-template-columns:1fr; gap:2px; } }
   .ap-lightbox{ border:none; padding:0; margin:auto; width:min(1200px, calc(100vw - 32px)); max-width:none; max-height:calc(100vh - 32px); background:#fff; border-radius:12px; overflow:hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.6); }
   .ap-lightbox::backdrop{ background: rgba(14,15,20,0.82); }
   .ap-lightbox-bar{ position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; gap:12px; height:44px; padding:0 8px 0 16px; background:#2A2B35; color: rgba(255,255,255,0.7); font-family: var(--mono); font-size:13px; }
@@ -1503,6 +1508,11 @@
       <div class="meta-item"><div class="label">Platform</div><div>Customer Self Service Portal (Desktop &amp; Mobile)</div></div>
       <div class="meta-item"><div class="label">Timeline</div><div>3 weeks</div></div>
     </div>
+    <dl class="ap-glance">
+      <div><dt>Problem</dt><dd>AutoPay customers couldn't tell which card would be charged, and payment questions made up about 20% of call center volume.</dd></div>
+      <div><dt>What I did</dt><dd>Audited five payment flows, combined saved cards into one wallet, and designed a four step AutoPay flow.</dd></div>
+      <div><dt>Result</dt><dd>One clear view of how customers pay and what AutoPay will charge. Launching October 2026.</dd></div>
+    </dl>
   </div>
 </section>
 
@@ -1523,7 +1533,7 @@
         <div class="sub">Most payments were one time, and the card entered there wasn't saved. Customers didn't see it later where they expected it.</div>
       </div>
     </div>
-    <p style="margin-top:32px;">The result was two separate ideas of "my cards." This was one of the biggest drivers of calls to the call center, often from customers who thought they had paid with a new card, only to find it wasn't set up for AutoPay.</p>
+    <p style="margin-top:32px;">The result was two separate ideas of "my cards." Payment questions made up about 20% of call center volume, often from customers who thought they had paid with a new card, only to find it wasn't set up for AutoPay.</p>
     <p style="margin-top:24px;">At the same time, the portal was being updated to match the new branding, so these screens also moved to the new UI.</p>
   </div>
 </section>
@@ -1827,14 +1837,14 @@
 <section class="body-section">
   <div class="wrap">
     <div class="cap">+ Outcome</div>
-    <h2>In development.</h2>
+    <h2>Launching October 2026.</h2>
     <p class="ap-intro">What changes for customers:</p>
     <ul class="plan-list">
       <li>One wallet <span class="note">For paying, setting up AutoPay and changing it</span></li>
       <li>AutoPay visible up front <span class="note">Status and timing shown before a payment is made</span></li>
       <li>Confirmed, not inferred <span class="note">AutoPay changes reviewed as current versus updated</span></li>
     </ul>
-    <p style="margin-top:32px;">Once it launches, the clearest measure of success will be fewer calls to the call center about payment methods and AutoPay.</p>
+    <p style="margin-top:32px;">Payment questions are about 20% of call center volume today. After launch, success means fewer calls about payment methods and AutoPay.</p>
   </div>
 </section>
 
