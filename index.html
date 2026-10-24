@@ -715,6 +715,13 @@
   #autopay .ap-glance dt{ color: var(--text-dim); font-size:13px; padding-top:4px; }
   #autopay .ap-glance dd{ margin:0; font-size:16px; line-height:1.8; }
   @media (max-width:520px){ #autopay .ap-glance > div{ grid-template-columns:1fr; gap:2px; } }
+  #autopay .ap-decision{ margin-top:72px; }
+  #autopay .ap-intro + .ap-decision{ margin-top:48px; }
+  #autopay .ap-decision h3{ margin:8px 0 0 0; font-family: var(--serif); font-weight:400; font-size:32px; line-height:1.25; color: var(--accent); }
+  #autopay .ap-dec-rows{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:32px; margin-top:20px; }
+  #autopay .ap-dec-rows p{ margin:0; font-size:16px; line-height:1.9; }
+  #autopay .ap-decision + .ap-card, #autopay .ap-decision + .shot-carousel{ margin-top:24px; }
+  @media (max-width:520px){ #autopay .ap-dec-rows{ grid-template-columns:1fr; gap:16px; } #autopay .ap-decision{ margin-top:56px; } #autopay .ap-decision h3{ font-size:26px; } }
   .ap-lightbox{ border:none; padding:0; margin:auto; width:min(1200px, calc(100vw - 32px)); max-width:none; max-height:calc(100vh - 32px); background:#fff; border-radius:12px; overflow:hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.6); }
   .ap-lightbox::backdrop{ background: rgba(14,15,20,0.82); }
   .ap-lightbox-bar{ position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; gap:12px; height:44px; padding:0 8px 0 16px; background:#2A2B35; color: rgba(255,255,255,0.7); font-family: var(--mono); font-size:13px; }
@@ -1615,93 +1622,61 @@
 
 <section class="body-section">
   <div class="wrap">
-    <div class="cap">+ Design Goals</div>
-    <h2>Three goals guided every screen.</h2>
-    <ol class="ap-steps">
-      <li><span class="n">01</span><div><div class="t">One wallet everywhere</div><p>The same saved payment methods appear when making a payment, setting up AutoPay or changing it.</p></div></li>
-      <li><span class="n">02</span><div><div class="t">Always show what AutoPay is doing</div><p>When the next automatic payment is scheduled, for how much, and on which method, before the customer acts.</p></div></li>
-      <li><span class="n">03</span><div><div class="t">Make AutoPay changes explicit</div><p>Switching the AutoPay method is its own confirmed step, with the current setup next to the new one.</p></div></li>
-    </ol>
-  </div>
-</section>
-
-<section class="body-section">
-  <div class="wrap">
-    <div class="cap">+ Key Decisions</div>
-    <h2>One wallet, and AutoPay you can see.</h2>
-    <p class="kd-intro">Every payment flow shares one list of saved methods, and AutoPay changes get their own short flow.</p>
-
-    <div class="kd-grid">
-
-      <div class="kd-card">
-        <div class="kd-head">
-          <div class="kd-num">01</div>
-          <h3>One list of saved payment methods</h3>
-        </div>
-        <div class="kd-mock ap-mock">
-          <div class="ap-method is-selected"><span class="ap-radio"></span><span class="ap-name">Visa ••1111</span><span class="ap-tag">Current</span></div>
-          <div class="ap-method"><span class="ap-radio"></span><span class="ap-name">Visa ••4567</span></div>
-          <div class="ap-method is-expired"><span class="ap-radio"></span><span class="ap-name">MC ••9012</span><span class="ap-tag">Expired 08/25</span></div>
-        </div>
-        <div class="kd-rows">
-          <div><div class="kd-label">Before</div><p>Cards used for a one time payment weren't saved, and nothing showed which card AutoPay used.</p></div>
-          <div><div class="kd-label">The design response</div><p>Paying, setting up AutoPay and changing it all show the same selection cards. A Current tag marks the card in use, and expired cards stay visible but greyed out.</p></div>
-          <div><div class="kd-label">What it protects</div><p>One answer to "which cards do I have?" A new card can be saved with a checkbox so it shows up later.</p></div>
-        </div>
-      </div>
-
-      <div class="kd-card">
-        <div class="kd-head">
-          <div class="kd-num">02</div>
-          <h3>AutoPay status shown before payment</h3>
-        </div>
-        <div class="kd-mock ap-mock">
-          <div class="ap-banner">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6"></circle><path d="M8 4.5V8l2.5 1.5"></path></svg>
-            <div><div class="ap-banner-t">Next automatic payment: $142.50 on 11/03</div><div class="ap-banner-s">Payments made within 3 business days of the due date may not stop this withdrawal.</div></div>
-          </div>
-        </div>
-        <div class="kd-rows">
-          <div><div class="kd-label">Before</div><p>Customers on AutoPay paid without knowing whether a withdrawal was still coming.</p></div>
-          <div><div class="kd-label">The design response</div><p>A banner at the top of Make a Payment shows the amount and date of the next automatic payment, plus the timing rule.</p></div>
-          <div><div class="kd-label">What it protects</div><p>It answers "will I be charged twice?" before the customer pays.</p></div>
-        </div>
-      </div>
-
-      <div class="kd-card">
-        <div class="kd-head">
-          <div class="kd-num">03</div>
-          <h3>AutoPay changes confirmed side by side</h3>
-        </div>
-        <div class="kd-mock ap-mock">
-          <div class="ap-compare">
-            <div class="ap-col"><div class="kd-label">Current</div><div class="ap-val">Visa ••1111</div></div>
-            <svg class="ap-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-            <div class="ap-col is-new"><div class="kd-label">Updated</div><div class="ap-val">Visa ••4567</div></div>
-          </div>
-          <div class="kd-sync-pill">Update automatic payments</div>
-        </div>
-        <div class="kd-rows">
-          <div><div class="kd-label">Before</div><p>Switching the AutoPay card had to be inferred from updating a card on file.</p></div>
-          <div><div class="kd-label">The design response</div><p>A short flow ends on a review that lists the current method and schedule above the updated ones. The button says what it does, not "Submit."</p></div>
-          <div><div class="kd-label">What it protects</div><p>No surprise charges. A note confirms the change won't affect the current bill or withdrawals already scheduled.</p></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="body-section">
-  <div class="wrap">
     <div class="cap">+ The Solution</div>
-    <h2>A dedicated flow for AutoPay.</h2>
-    <p class="ap-intro">Make a Payment now leads with what AutoPay is doing. Changing AutoPay is its own four step flow, and every step uses the same saved methods.</p>
+    <h2>One wallet, and AutoPay you can see.</h2>
+    <p class="ap-intro">Three decisions, each answering a problem from the audit, shown on the final screens.</p>
 
+    <div class="ap-decision">
+      <div class="kd-num">Decision 01</div>
+      <h3>One wallet everywhere</h3>
+      <div class="ap-dec-rows">
+        <div><div class="kd-label">Before</div><p>Cards used for a one time payment weren't saved, and nothing showed which card AutoPay used.</p></div>
+        <div><div class="kd-label">What I decided</div><p>Paying, setting up AutoPay and changing it all use the same list of saved methods, with tags for the AutoPay card and expired cards.</p></div>
+      </div>
+    </div>
     <div class="ap-card">
       <div class="ap-card-head">
         <div>
-          <div class="ap-slide-cap">Solution · Make a payment</div>
+          <div class="ap-slide-cap">Manage payment methods</div>
+          <h3 class="ap-slide-title">The audit close up, redesigned</h3>
+          <p class="ap-slide-dek">One list with clear status, and the method AutoPay uses is labeled.</p>
+        </div>
+        <div class="ap-toggle" role="group" aria-label="Compare with current design">
+          <button type="button" data-view="before" aria-pressed="false">Before</button>
+          <button type="button" data-view="after" aria-pressed="true">After</button>
+        </div>
+      </div>
+      <div class="ap-frame" data-view="after">
+        <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Customer portal · Manage payment methods</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
+        <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Manage payment methods">
+          <img class="ap-after" src="assets/autopay-solution-manage-methods.webp" alt="Redesigned Manage payment methods page with one list of cards and bank accounts, an Automatic Payment tag on Visa 4567, an Expired tag on Amex 1111, and one Add Payment Method button" loading="lazy">
+          <div class="ap-pinned ap-before"><img src="assets/autopay-audit-step-3.webp" alt="Current Manage Payment Methods page with five numbered callouts" loading="lazy"><span class="ap-pin" style="left:13.6%;top:39.7%" aria-hidden="true">1</span><span class="ap-pin" style="left:13.4%;top:59.5%" aria-hidden="true">2</span><span class="ap-pin" style="left:58.6%;top:35.1%" aria-hidden="true">3</span><span class="ap-pin" style="left:57.5%;top:51.4%" aria-hidden="true">4</span><span class="ap-pin" style="left:12.6%;top:22%" aria-hidden="true">5</span></div>
+          <span class="ap-scroll-hint" aria-hidden="true">Scroll</span>
+        </div>
+      </div>
+      <div class="ap-sub">How it answers the audit</div>
+      <ol class="ap-callouts">
+        <li><span class="ap-badge">1</span><div><div class="t">Status on every method</div><p>An Expired tag and red date flag a card here, before it fails at checkout.</p></div></li>
+        <li><span class="ap-badge">2</span><div><div class="t">One list for every method</div><p>Cards and bank accounts sit together, with the AutoPay method at the top.</p></div></li>
+        <li><span class="ap-badge">3</span><div><div class="t">Labels instead of a star</div><p>The unexplained star is gone. Tags say what each status means.</p></div></li>
+        <li><span class="ap-badge">4</span><div><div class="t">One primary action</div><p>A single Add Payment Method button replaces the two competing ones.</p></div></li>
+        <li><span class="ap-badge">5</span><div><div class="t">AutoPay method labeled</div><p>An Automatic Payment tag shows which method AutoPay uses, and the intro explains that edits here won't change it.</p></div></li>
+      </ol>
+    </div>
+
+
+    <div class="ap-decision">
+      <div class="kd-num">Decision 02</div>
+      <h3>Always show what AutoPay is doing</h3>
+      <div class="ap-dec-rows">
+        <div><div class="kd-label">Before</div><p>Customers on AutoPay paid without knowing whether a withdrawal was still coming.</p></div>
+        <div><div class="kd-label">What I decided</div><p>Make a Payment opens with the amount and date of the next automatic payment, so customers know if they'll be charged twice before they pay.</p></div>
+      </div>
+    </div>
+    <div class="ap-card">
+      <div class="ap-card-head">
+        <div>
+          <div class="ap-slide-cap">Make a payment</div>
           <h3 class="ap-slide-title">AutoPay in view before paying</h3>
           <p class="ap-slide-dek">The page opens with the next scheduled withdrawal, then the amount, then one list of saved methods.</p>
         </div>
@@ -1727,9 +1702,18 @@
       </ol>
     </div>
 
+
+    <div class="ap-decision">
+      <div class="kd-num">Decision 03</div>
+      <h3>Make AutoPay changes explicit</h3>
+      <div class="ap-dec-rows">
+        <div><div class="kd-label">Before</div><p>Switching the AutoPay card had to be inferred from updating a card on file.</p></div>
+        <div><div class="kd-label">What I decided</div><p>Changing AutoPay is its own four step flow. It ends on a review of current versus updated, with a button that says what it does.</p></div>
+      </div>
+    </div>
     <div class="shot-carousel ap-carousel ap-flow" id="apFlowCarousel">
       <div class="ap-flow-head">
-        <div class="ap-slide-cap">Solution · Change AutoPay</div>
+        <div class="ap-slide-cap">Change AutoPay</div>
         <h3 class="ap-slide-title">Four steps, one decision each</h3>
         <ol class="ap-stepper" aria-label="AutoPay flow steps">
           <li><button type="button" class="is-active" aria-current="step" data-slide="0"><span class="ap-badge">1</span><span>Payment plan</span></button></li>
@@ -1787,35 +1771,6 @@
       </div>
     </div>
 
-    <div class="ap-card">
-      <div class="ap-card-head">
-        <div>
-          <div class="ap-slide-cap">Solution · Manage payment methods</div>
-          <h3 class="ap-slide-title">The audit close up, redesigned</h3>
-          <p class="ap-slide-dek">One list with clear status, and the method AutoPay uses is labeled.</p>
-        </div>
-        <div class="ap-toggle" role="group" aria-label="Compare with current design">
-          <button type="button" data-view="before" aria-pressed="false">Before</button>
-          <button type="button" data-view="after" aria-pressed="true">After</button>
-        </div>
-      </div>
-      <div class="ap-frame" data-view="after">
-        <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Customer portal · Manage payment methods</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
-        <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Manage payment methods">
-          <img class="ap-after" src="assets/autopay-solution-manage-methods.webp" alt="Redesigned Manage payment methods page with one list of cards and bank accounts, an Automatic Payment tag on Visa 4567, an Expired tag on Amex 1111, and one Add Payment Method button" loading="lazy">
-          <div class="ap-pinned ap-before"><img src="assets/autopay-audit-step-3.webp" alt="Current Manage Payment Methods page with five numbered callouts" loading="lazy"><span class="ap-pin" style="left:13.6%;top:39.7%" aria-hidden="true">1</span><span class="ap-pin" style="left:13.4%;top:59.5%" aria-hidden="true">2</span><span class="ap-pin" style="left:58.6%;top:35.1%" aria-hidden="true">3</span><span class="ap-pin" style="left:57.5%;top:51.4%" aria-hidden="true">4</span><span class="ap-pin" style="left:12.6%;top:22%" aria-hidden="true">5</span></div>
-          <span class="ap-scroll-hint" aria-hidden="true">Scroll</span>
-        </div>
-      </div>
-      <div class="ap-sub">How it answers the audit</div>
-      <ol class="ap-callouts">
-        <li><span class="ap-badge">1</span><div><div class="t">Status on every method</div><p>An Expired tag and red date flag a card here, before it fails at checkout.</p></div></li>
-        <li><span class="ap-badge">2</span><div><div class="t">One list for every method</div><p>Cards and bank accounts sit together, with the AutoPay method at the top.</p></div></li>
-        <li><span class="ap-badge">3</span><div><div class="t">Labels instead of a star</div><p>The unexplained star is gone. Tags say what each status means.</p></div></li>
-        <li><span class="ap-badge">4</span><div><div class="t">One primary action</div><p>A single Add Payment Method button replaces the two competing ones.</p></div></li>
-        <li><span class="ap-badge">5</span><div><div class="t">AutoPay method labeled</div><p>An Automatic Payment tag shows which method AutoPay uses, and the intro explains that edits here won't change it.</p></div></li>
-      </ol>
-    </div>
 
     <p class="shot-caption">I also designed alternate states with the team, including a customer with no saved methods, adding a card versus a bank account, and expired methods.</p>
   </div>
@@ -1838,13 +1793,7 @@
   <div class="wrap">
     <div class="cap">+ Outcome</div>
     <h2>Launching October 2026.</h2>
-    <p class="ap-intro">What changes for customers:</p>
-    <ul class="plan-list">
-      <li>One wallet <span class="note">For paying, setting up AutoPay and changing it</span></li>
-      <li>AutoPay visible up front <span class="note">Status and timing shown before a payment is made</span></li>
-      <li>Confirmed, not inferred <span class="note">AutoPay changes reviewed as current versus updated</span></li>
-    </ul>
-    <p style="margin-top:32px;">Payment questions are about 20% of call center volume today. After launch, success means fewer calls about payment methods and AutoPay.</p>
+    <p>Payment questions are about 20% of call center volume today. After launch, success means fewer calls about payment methods and AutoPay.</p>
   </div>
 </section>
 
