@@ -639,6 +639,72 @@
     #experience .role.compact{ padding:28px; }
     #experience .cta{ padding: 56px 20px; }
   }
+  /* AutoPay solution: scroll frames, before/after, flow carousel */
+  #autopay .ap-card{ background: var(--surface); border-radius:12px; box-shadow: 0 14px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3); padding:32px; margin-top:32px; min-width:0; }
+  #autopay .ap-card-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:24px; }
+  #autopay .ap-card-head > div:first-child{ min-width:0; }
+  #autopay .ap-toggle{ display:inline-flex; flex-shrink:0; padding:3px; border-radius:999px; background: var(--bg); border:1px solid var(--border); }
+  #autopay .ap-toggle button{ font: inherit; font-size:13px; line-height:1; padding:8px 14px; border-radius:999px; border:none; background:none; color: var(--text-dim); cursor:pointer; transition: background .2s, color .2s; }
+  #autopay .ap-toggle button[aria-pressed="true"]{ background: var(--accent); color: var(--bg); }
+  #autopay .ap-toggle button:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  #autopay .ap-frame{ margin-top:24px; border-radius:8px; overflow:hidden; background:#fff; border:1px solid var(--border); }
+  #autopay .ap-frame-bar{ display:flex; align-items:center; gap:12px; height:36px; padding:0 8px 0 14px; background:#2A2B35; }
+  #autopay .ap-frame-dots{ display:flex; gap:6px; }
+  #autopay .ap-frame-dots i{ width:9px; height:9px; border-radius:50%; background: rgba(255,255,255,0.16); }
+  #autopay .ap-frame-label{ flex:1; min-width:0; font-size:12px; line-height:1; color: var(--text-dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-align:center; }
+  #autopay .ap-expand{ display:flex; align-items:center; justify-content:center; width:28px; height:28px; border:none; border-radius:6px; background:none; color: var(--text-dim); cursor:pointer; }
+  #autopay .ap-expand:hover, #autopay .ap-expand:focus-visible{ color: var(--accent); background: rgba(255,255,255,0.06); }
+  #autopay .ap-expand svg{ width:15px; height:15px; }
+  #autopay .ap-scroll{ position:relative; max-height:560px; overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color: rgba(0,0,0,0.25) transparent; }
+  #autopay .ap-scroll::-webkit-scrollbar{ width:6px; }
+  #autopay .ap-scroll::-webkit-scrollbar-thumb{ background: rgba(0,0,0,0.25); border-radius:3px; }
+  #autopay .ap-scroll:focus-visible{ outline:2px solid var(--accent); outline-offset:-2px; }
+  #autopay .ap-scroll img{ display:block; width:100%; height:auto; }
+  /* Crop the 1440 canvas to its content column (x 300 to 1140) so text reads at close to real size */
+  #autopay .ap-scroll img.ap-crop{ width:171.43%; max-width:none; margin-left:-35.71%; }
+  #autopay .ap-frame[data-view="after"] .ap-before, #autopay .ap-frame[data-view="before"] .ap-after{ display:none; }
+  #autopay .ap-scroll-hint{ position:sticky; bottom:12px; float:right; margin:-40px 12px 0 0; display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:999px; background: rgba(28,29,36,0.82); color:#fff; font-size:12px; line-height:1; pointer-events:none; transition: opacity .3s; }
+  #autopay .ap-scroll-hint::before{ content:""; width:6px; height:6px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+  #autopay .ap-scroll.is-scrolled .ap-scroll-hint, #autopay .ap-scroll.no-scroll .ap-scroll-hint{ opacity:0; }
+  #autopay .ap-sub{ font-size:13px; letter-spacing:.08em; text-transform:uppercase; color: var(--text-dim); margin-top:32px; }
+  #autopay .ap-sub + .ap-callouts{ margin-top:16px; }
+  #autopay .ap-flow-head{ padding:32px 32px 0; }
+  #autopay .ap-stepper{ list-style:none; margin:24px 0 0 0; padding:0; display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:8px; }
+  #autopay .ap-stepper button{ width:100%; display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:8px; border:1px solid var(--border); background:none; color: var(--text-dim); font: inherit; font-size:14px; line-height:1.3; text-align:left; cursor:pointer; transition: border-color .2s, color .2s, background .2s; }
+  #autopay .ap-stepper button .ap-badge{ background: var(--border); color: var(--text-dim); transition: background .2s, color .2s; }
+  #autopay .ap-stepper button.is-done .ap-badge{ background: rgba(79,141,255,0.22); color: var(--accent); }
+  #autopay .ap-stepper button.is-active{ border-color: var(--accent); color: var(--text); background: rgba(79,141,255,0.08); }
+  #autopay .ap-stepper button.is-active .ap-badge{ background: var(--accent); color: var(--bg); }
+  #autopay .ap-stepper button:hover{ color: var(--text); }
+  #autopay .ap-stepper button:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  #autopay .ap-flow .ap-slide{ padding-top:20px; }
+  #autopay .ap-flow .ap-slide-dek{ margin-top:0; max-width:none; }
+  #autopay .ap-flow .ap-slide-dek strong{ color: var(--text); font-weight:500; }
+  #autopay .ap-flow .ap-slide.is-active{ animation: apFade .35s ease; }
+  @keyframes apFade{ from{ opacity:0; transform: translateY(6px); } to{ opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce){ #autopay .ap-flow .ap-slide.is-active{ animation:none; } }
+  .ap-lightbox{ border:none; padding:0; margin:auto; width:min(1200px, calc(100vw - 32px)); max-width:none; max-height:calc(100vh - 32px); background:#fff; border-radius:12px; overflow:hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.6); }
+  .ap-lightbox::backdrop{ background: rgba(14,15,20,0.82); }
+  .ap-lightbox-bar{ position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; gap:12px; height:44px; padding:0 8px 0 16px; background:#2A2B35; color: rgba(255,255,255,0.7); font-family: var(--mono); font-size:13px; }
+  .ap-lightbox-bar span{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .ap-lightbox-close{ display:flex; align-items:center; justify-content:center; width:32px; height:32px; border:none; border-radius:6px; background:none; color:#fff; cursor:pointer; flex-shrink:0; }
+  .ap-lightbox-close:hover, .ap-lightbox-close:focus-visible{ background: rgba(255,255,255,0.1); outline:none; }
+  .ap-lightbox-close svg{ width:18px; height:18px; }
+  .ap-lightbox-body{ overflow:auto; max-height:calc(100vh - 76px); }
+  .ap-lightbox-body img{ display:block; width:100%; min-width:900px; height:auto; }
+  @media (max-width:720px){
+    #autopay .ap-stepper{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  }
+  @media (max-width:520px){
+    #autopay .ap-card{ padding:24px 20px; }
+    #autopay .ap-card-head{ flex-direction:column; gap:16px; }
+    #autopay .ap-flow-head{ padding:24px 20px 0; }
+    #autopay .ap-scroll{ max-height:440px; }
+    /* Tighter crop on phones: x 340 to 1100 */
+    #autopay .ap-scroll img.ap-crop{ width:189.47%; margin-left:-44.74%; }
+    #autopay .ap-stepper button{ padding:8px 10px; font-size:13px; gap:8px; }
+    #autopay .ap-frame-label{ text-align:left; }
+  }
 </style>
 </head>
 <body>
@@ -1589,14 +1655,127 @@
   <div class="wrap">
     <div class="cap">+ The Solution</div>
     <h2>A dedicated flow for AutoPay.</h2>
-    <div class="shot ap-wide">Screens coming soon: Make a Payment with saved methods and the AutoPay banner</div>
-    <ol class="ap-steps ap-steps-grid">
-      <li><span class="n">01</span><div><div class="t">Payment plan</div><p>Choose how often to pay.</p></div></li>
-      <li><span class="n">02</span><div><div class="t">Payment method</div><p>Pick a saved method, or add a card or bank account.</p></div></li>
-      <li><span class="n">03</span><div><div class="t">Review</div><p>Current and updated settings, side by side.</p></div></li>
-      <li><span class="n">04</span><div><div class="t">Confirmation</div><p>"Automatic payments scheduled."</p></div></li>
-    </ol>
-    <div class="shot ap-wide">Screens coming soon: Payment method selection and Review automatic payments</div>
+    <p class="ap-intro">Make a Payment now leads with what AutoPay is doing. Changing AutoPay is its own four step flow, and every step uses the same saved methods.</p>
+
+    <div class="ap-card">
+      <div class="ap-card-head">
+        <div>
+          <div class="ap-slide-cap">Solution · Make a payment</div>
+          <h3 class="ap-slide-title">AutoPay in view before paying</h3>
+          <p class="ap-slide-dek">The page opens with the next scheduled withdrawal, then the amount, then one list of saved methods.</p>
+        </div>
+        <div class="ap-toggle" role="group" aria-label="Compare with current design">
+          <button type="button" data-view="before" aria-pressed="false">Before</button>
+          <button type="button" data-view="after" aria-pressed="true">After</button>
+        </div>
+      </div>
+      <div class="ap-frame" data-view="after">
+        <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Customer portal · Make a payment</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
+        <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Make a payment">
+          <img class="ap-after ap-crop" src="assets/autopay-solution-make-payment.webp" alt="Redesigned Make a payment page with an Automatic payment scheduled banner, payment amount, and a list of saved payment methods" loading="lazy">
+          <img class="ap-before" src="assets/autopay-audit-make-payment.webp" alt="Current Make a Payment page with five numbered callouts" loading="lazy">
+          <span class="ap-scroll-hint" aria-hidden="true">Scroll</span>
+        </div>
+      </div>
+      <div class="ap-sub">What changed</div>
+      <ol class="ap-callouts">
+        <li><span class="ap-badge">1</span><div><div class="t">AutoPay status, not a warning</div><p>The banner states the amount and date of the next automatic payment, then the timing rule.</p></div></li>
+        <li><span class="ap-badge">2</span><div><div class="t">One list of saved methods</div><p>Cards and bank accounts are radio cards, with a Current tag on the method in use.</p></div></li>
+        <li><span class="ap-badge">3</span><div><div class="t">Expired methods stay visible</div><p>Greyed out with an Expired tag and date, so customers see why a card can't be picked.</p></div></li>
+        <li><span class="ap-badge">4</span><div><div class="t">One clear next step</div><p>Continue carries the weight. Adding a new method is a text link, not a second orange button.</p></div></li>
+      </ol>
+    </div>
+
+    <div class="shot-carousel ap-carousel ap-flow" id="apFlowCarousel">
+      <div class="ap-flow-head">
+        <div class="ap-slide-cap">Solution · Change AutoPay</div>
+        <h3 class="ap-slide-title">Four steps, one decision each</h3>
+        <ol class="ap-stepper" aria-label="AutoPay flow steps">
+          <li><button type="button" class="is-active" aria-current="step" data-slide="0"><span class="ap-badge">1</span><span>Payment plan</span></button></li>
+          <li><button type="button" data-slide="1"><span class="ap-badge">2</span><span>Payment method</span></button></li>
+          <li><button type="button" data-slide="2"><span class="ap-badge">3</span><span>Review</span></button></li>
+          <li><button type="button" data-slide="3"><span class="ap-badge">4</span><span>Confirmation</span></button></li>
+        </ol>
+      </div>
+      <div class="ap-slides">
+
+        <div class="ap-slide is-active" aria-hidden="false">
+          <p class="ap-slide-dek"><strong>Choose how often to pay.</strong> Pay plan is a single choice, so it's a radio list. How often to pay is separate from how to pay.</p>
+          <div class="ap-frame">
+            <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Step 1 · Payment plan</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
+            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Payment plan"><img class="ap-crop" src="assets/autopay-flow-1-plan.webp" alt="Payment plan step with Pay in 4, Pay in 10, Pay in 12 and Pay in full as radio options" loading="lazy"><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
+          </div>
+        </div>
+
+        <div class="ap-slide" aria-hidden="true">
+          <p class="ap-slide-dek"><strong>Pick a saved method.</strong> The same list as Make a Payment. Expired cards can't be chosen, and a link adds a new card or bank account.</p>
+          <div class="ap-frame">
+            <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Step 2 · Payment method</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
+            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Payment method"><img class="ap-crop" src="assets/autopay-flow-2-method.webp" alt="Payment method step with Visa 4567 selected, an expired Amex greyed out, and a checking account" loading="lazy"><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
+          </div>
+        </div>
+
+        <div class="ap-slide" aria-hidden="true">
+          <p class="ap-slide-dek"><strong>Review current against updated.</strong> Each updated value links back to its step, and the button says exactly what it does.</p>
+          <div class="ap-frame">
+            <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Step 3 · Review</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
+            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Review automatic payments"><img class="ap-crop" src="assets/autopay-flow-3-review.webp" alt="Review automatic payments step listing the current method and schedule above the updated ones, with an Update automatic payments button" loading="lazy"><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
+          </div>
+        </div>
+
+        <div class="ap-slide" aria-hidden="true">
+          <p class="ap-slide-dek"><strong>Confirm in plain words.</strong> The new method and schedule, plus a note that the current bill isn't affected.</p>
+          <div class="ap-frame">
+            <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Step 4 · Confirmation</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
+            <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Automatic payments scheduled"><img class="ap-crop" src="assets/autopay-flow-4-confirm.webp" alt="Automatic payments scheduled confirmation showing Visa 4567 and Pay in 4" loading="lazy"><span class="ap-scroll-hint" aria-hidden="true">Scroll</span></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="carousel-dots" aria-label="AutoPay flow steps">
+        <button type="button" class="carousel-nav" data-dir="-1" aria-label="Previous step">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+        </button>
+        <button type="button" class="dot is-active" aria-label="Step 1" aria-current="true"></button>
+        <button type="button" class="dot" aria-label="Step 2"></button>
+        <button type="button" class="dot" aria-label="Step 3"></button>
+        <button type="button" class="dot" aria-label="Step 4"></button>
+        <button type="button" class="carousel-nav" data-dir="1" aria-label="Next step">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="ap-card">
+      <div class="ap-card-head">
+        <div>
+          <div class="ap-slide-cap">Solution · Manage payment methods</div>
+          <h3 class="ap-slide-title">The audit close up, redesigned</h3>
+          <p class="ap-slide-dek">One list with clear status, and the method AutoPay uses is labeled.</p>
+        </div>
+        <div class="ap-toggle" role="group" aria-label="Compare with current design">
+          <button type="button" data-view="before" aria-pressed="false">Before</button>
+          <button type="button" data-view="after" aria-pressed="true">After</button>
+        </div>
+      </div>
+      <div class="ap-frame" data-view="after">
+        <div class="ap-frame-bar"><span class="ap-frame-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-frame-label">Customer portal · Manage payment methods</span><button type="button" class="ap-expand" aria-label="View full size"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></button></div>
+        <div class="ap-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot of Manage payment methods">
+          <img class="ap-after ap-crop" src="assets/autopay-solution-manage-methods.webp" alt="Redesigned Manage payment methods page with one list of cards and bank accounts, an Automatic Payment tag on Visa 4567, an Expired tag on Amex 1111, and one Add Payment Method button" loading="lazy">
+          <img class="ap-before" src="assets/autopay-audit-manage-methods.webp" alt="Current Manage Payment Methods page with five numbered callouts" loading="lazy">
+          <span class="ap-scroll-hint" aria-hidden="true">Scroll</span>
+        </div>
+      </div>
+      <div class="ap-sub">How it answers the audit</div>
+      <ol class="ap-callouts">
+        <li><span class="ap-badge">1</span><div><div class="t">Status on every method</div><p>An Expired tag and red date flag a card here, before it fails at checkout.</p></div></li>
+        <li><span class="ap-badge">2</span><div><div class="t">One list for every method</div><p>Cards and bank accounts sit together, with the AutoPay method at the top.</p></div></li>
+        <li><span class="ap-badge">3</span><div><div class="t">Labels instead of a star</div><p>The unexplained star is gone. Tags say what each status means.</p></div></li>
+        <li><span class="ap-badge">4</span><div><div class="t">One primary action</div><p>A single Add Payment Method button replaces the two competing ones.</p></div></li>
+        <li><span class="ap-badge">5</span><div><div class="t">AutoPay method labeled</div><p>An Automatic Payment tag shows which method AutoPay uses, and the intro explains that edits here won't change it.</p></div></li>
+      </ol>
+    </div>
+
     <p class="shot-caption">I also designed alternate states with the team, including a customer with no saved methods, adding a card versus a bank account, and expired methods.</p>
   </div>
 </section>
@@ -1647,6 +1826,10 @@
   </div>
 </div>
 
+<dialog class="ap-lightbox" id="apLightbox" aria-label="Full size screenshot">
+  <div class="ap-lightbox-bar"><span></span><button type="button" class="ap-lightbox-close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg></button></div>
+  <div class="ap-lightbox-body"><img alt=""></div>
+</dialog>
 </main>
 
 
@@ -1883,19 +2066,68 @@
 </script>
 <script>
 (function(){
-  var c = document.getElementById('apAuditCarousel');
-  if (!c) return;
-  var slides = c.querySelectorAll('.ap-slide');
-  var dots = c.querySelectorAll('.carousel-dots .dot');
-  var i = 0;
-  function show(n){
-    i = (n + slides.length) % slides.length;
-    slides.forEach(function(s, k){ var on = k === i; s.classList.toggle('is-active', on); s.setAttribute('aria-hidden', on ? 'false' : 'true'); });
-    dots.forEach(function(d, k){ var on = k === i; d.classList.toggle('is-active', on); if (on) d.setAttribute('aria-current','true'); else d.removeAttribute('aria-current'); });
+  ['apAuditCarousel','apFlowCarousel'].forEach(function(id){
+    var c = document.getElementById(id);
+    if (!c) return;
+    var slides = c.querySelectorAll('.ap-slide');
+    var dots = c.querySelectorAll('.carousel-dots .dot');
+    var steps = c.querySelectorAll('.ap-stepper button');
+    var i = 0;
+    function show(n){
+      i = (n + slides.length) % slides.length;
+      slides.forEach(function(s, k){ var on = k === i; s.classList.toggle('is-active', on); s.setAttribute('aria-hidden', on ? 'false' : 'true'); });
+      dots.forEach(function(d, k){ var on = k === i; d.classList.toggle('is-active', on); if (on) d.setAttribute('aria-current','true'); else d.removeAttribute('aria-current'); });
+      steps.forEach(function(b, k){ b.classList.toggle('is-active', k === i); b.classList.toggle('is-done', k < i); if (k === i) b.setAttribute('aria-current','step'); else b.removeAttribute('aria-current'); });
+      var sc = slides[i].querySelector('.ap-scroll');
+      if (sc){ sc.classList.toggle('no-scroll', sc.scrollHeight <= sc.clientHeight + 4); }
+    }
+    dots.forEach(function(d, k){ d.addEventListener('click', function(){ show(k); }); });
+    steps.forEach(function(b, k){ b.addEventListener('click', function(){ show(k); }); });
+    c.querySelectorAll('.carousel-nav').forEach(function(b){ b.addEventListener('click', function(){ show(i + Number(b.dataset.dir)); }); });
+    c.addEventListener('keydown', function(e){ if (e.target.closest('.ap-journey')) return; if (e.key === 'ArrowRight') show(i + 1); if (e.key === 'ArrowLeft') show(i - 1); });
+  });
+})();
+</script>
+<script>
+(function(){
+  var root = document.getElementById('autopay');
+  if (!root) return;
+  // Scroll hint: hide once scrolled, or when there is nothing to scroll
+  function checkScroll(s){ s.classList.toggle('no-scroll', s.scrollHeight <= s.clientHeight + 4); }
+  root.querySelectorAll('.ap-scroll').forEach(function(s){
+    s.addEventListener('scroll', function(){ if (s.scrollTop > 24) s.classList.add('is-scrolled'); }, { passive:true });
+    s.querySelectorAll('img').forEach(function(img){ img.addEventListener('load', function(){ checkScroll(s); }); });
+  });
+  function refresh(){ root.querySelectorAll('.ap-scroll').forEach(checkScroll); }
+  window.addEventListener('resize', refresh);
+  window.addEventListener('hashchange', function(){ setTimeout(refresh, 50); });
+  setTimeout(refresh, 300);
+  // Before / After toggles
+  root.querySelectorAll('.ap-card').forEach(function(card){
+    var frame = card.querySelector('.ap-frame');
+    var btns = card.querySelectorAll('.ap-toggle button');
+    btns.forEach(function(b){ b.addEventListener('click', function(){
+      frame.dataset.view = b.dataset.view;
+      btns.forEach(function(o){ o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      var s = frame.querySelector('.ap-scroll'); s.scrollTop = 0; s.classList.remove('is-scrolled'); checkScroll(s);
+    }); });
+  });
+  // Full size viewer
+  var dlg = document.getElementById('apLightbox');
+  if (dlg && dlg.showModal){
+    var dImg = dlg.querySelector('img'), dLabel = dlg.querySelector('.ap-lightbox-bar span');
+    root.querySelectorAll('.ap-expand').forEach(function(b){ b.addEventListener('click', function(){
+      var frame = b.closest('.ap-frame');
+      var img = Array.prototype.find.call(frame.querySelectorAll('.ap-scroll img'), function(i){ return i.offsetParent !== null; }) || frame.querySelector('.ap-scroll img');
+      dImg.src = img.currentSrc || img.src; dImg.alt = img.alt;
+      dLabel.textContent = frame.querySelector('.ap-frame-label').textContent;
+      dlg.showModal(); dlg.querySelector('.ap-lightbox-body').scrollTop = 0;
+    }); });
+    dlg.querySelector('.ap-lightbox-close').addEventListener('click', function(){ dlg.close(); });
+    dlg.addEventListener('click', function(e){ if (e.target === dlg) dlg.close(); });
+  } else {
+    root.querySelectorAll('.ap-expand').forEach(function(b){ b.hidden = true; });
   }
-  dots.forEach(function(d, k){ d.addEventListener('click', function(){ show(k); }); });
-  c.querySelectorAll('.carousel-nav').forEach(function(b){ b.addEventListener('click', function(){ show(i + Number(b.dataset.dir)); }); });
-  c.addEventListener('keydown', function(e){ if (e.target.closest('.ap-journey')) return; if (e.key === 'ArrowRight') show(i + 1); if (e.key === 'ArrowLeft') show(i - 1); });
 })();
 </script>
 </body>
